@@ -5,18 +5,17 @@ scanner.settimeout(5)
 
 
 def uitvoeren():
-    te_scannen()
-    poort_scanner(poort)
+    while True:
+        vraag_invoer()
+        scan_poort(poort)
 
-    tweede_poort_scan = input("Wil je nog een poort scannen? Typ dan: 'ja' ").lower()
+        tweede_poort_scan = input("Wil je nog een poort scannen? Typ dan: 'ja' ").lower()
 
-    if tweede_poort_scan == "ja":
-        uitvoeren()
-    else:
-        exit()
+        if tweede_poort_scan != "ja":
+            exit()
 
 
-def te_scannen():
+def vraag_invoer():
         global host
         global poort
 
@@ -24,7 +23,7 @@ def te_scannen():
         poort = int(input("Geef de poort die je wil scannen op. "))
 
 
-def poort_scanner(poort):
+def scan_poort(poort):
         if scanner.connect_ex((host, poort)):
             print("Poort", poort, "is dicht.")
         else:
